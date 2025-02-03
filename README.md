@@ -1,11 +1,11 @@
 # cloud-index-authorizer
 
+![Image](https://github.com/user-attachments/assets/b50ace7c-5ddd-4be6-ab5e-228ac903e3e5)
+
+
 ## 🚀 Use Case
 
 Through **Cloud Index Authorizer**'s website, customers request access to the **Cloud Index Authorizer** GUI or API for cloud inventory data. Previously, this process was manual and time-consuming. As engineers, we believe in leveraging technology to automate repetitive tasks, leading to the creation of the **Cloud Index Authorizer**.
-
-![IR_automation drawio]()
-
 
 
 ## 🛠 Solution
@@ -15,6 +15,8 @@ The **Cloud Index Authorizer** is a cloud-native service designed to automate th
 
 
 ## 🔍 Architecture and Design
+
+![Image](https://github.com/user-attachments/assets/face3ac8-6aa9-4b81-b903-60c6bb2a8559)
 
 ### 🚀 Key AWS Services Used:
 
