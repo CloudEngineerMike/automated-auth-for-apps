@@ -3,35 +3,35 @@
 ![Image](https://github.com/user-attachments/assets/b50ace7c-5ddd-4be6-ab5e-228ac903e3e5)
 
 
-## 🚀 Use Case
+## Use Case
 
 Through **Cloud Index Authorizer**'s website, customers request access to the **Cloud Index Authorizer** GUI or API for cloud inventory data. Previously, this process was manual and time-consuming. As engineers, we believe in leveraging technology to automate repetitive tasks, leading to the creation of the **Cloud Index Authorizer**.
 
 
-## 🛠 Solution
+## Solution
 
 The **Cloud Index Authorizer** is a cloud-native service designed to automate the request process for accessing the **Cloud Index Authorizer** UI or API. This reduces manual intervention, streamlines workflows, and improves efficiency.
 
 
 
-## 🔍 Architecture and Design
+## Architecture and Design
 
-![Image](https://github.com/user-attachments/assets/face3ac8-6aa9-4b81-b903-60c6bb2a8559)
+![Image](https://github.com/user-attachments/assets/d6a3cf8f-4de6-419c-9b2e-d0e792eb5b0a)
 
-### 🚀 Key AWS Services Used:
+### Key AWS Services Used:
 
 - **DynamoDB** - Stores request and access data
 - **API Gateway** - Manages API requests
 - **Lambda** - Handles automation logic
 - **Secrets Manager** - Secures sensitive information
 
-### 🚀 Languages:
+### Languages:
 
-- **Python** 🐍
+- **Python** 
 
 
 
-## ⚙️ How It Works
+## ⚙How It Works
 
 1️⃣ **Customer submits a **CIA Access Request** via Cloud Index Authorizer's interface.
 
