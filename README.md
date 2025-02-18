@@ -16,7 +16,7 @@ The **Cloud Index Authorizer** is a cloud-native service designed to automate th
 
 ## Architecture and Design
 
-![Image](https://github.com/user-attachments/assets/d6a3cf8f-4de6-419c-9b2e-d0e792eb5b0a)
+![Cloud Index Authorizer](assets/cia-diagram.svg)
 
 ### Key AWS Services Used:
 
