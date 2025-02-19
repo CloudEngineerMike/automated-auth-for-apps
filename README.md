@@ -1,4 +1,4 @@
-# AWS Automated Authentication
+# Automated Authentication (AWS)
 _Automated authentication workflow for verifying user payloads and granting access to GUI or API._
 
 
