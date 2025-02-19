@@ -1,51 +1,83 @@
-# cloud-index-authorizer
-
-![Image](https://github.com/user-attachments/assets/b50ace7c-5ddd-4be6-ab5e-228ac903e3e5)
-
-
-## Use Case
-
-Through **Cloud Index Authorizer**'s website, customers request access to the **Cloud Index Authorizer** GUI or API for cloud inventory data. Previously, this process was manual and time-consuming. As engineers, we believe in leveraging technology to automate repetitive tasks, leading to the creation of the **Cloud Index Authorizer**.
+# AWS Automated Authentication System
+_Automated authentication workflow for verifying user payloads and granting access to GUI or API._
 
 
-## Solution
+![Image](./assets/cia.svg)
 
-The **Cloud Index Authorizer** is a cloud-native service designed to automate the request process for accessing the **Cloud Index Authorizer** UI or API. This reduces manual intervention, streamlines workflows, and improves efficiency.
+## Overview
+This AWS-based authentication system automatically verifies user payloads to determine access to a **GUI** or **API** for interacting with a database table. The authentication system leverages an **external API** for verification and, once validated, sends an email via **AWS SES** with the user’s new **API key** or **GUI access notification**.
 
+## Diagram
+![AWS Authentication Diagram](./assets/cia-diagram.svg)
 
+## Workflow
+1. **User submits an authentication request** with a payload containing credentials.
+2. **Payload verification** occurs:
+   - The payload is checked against a **database** via an **external API**.
+3. **Access Determination**:
+   - If valid, grant **GUI** or **API key access**.
+   - If invalid, reject the request.
+4. **Email Notification**:
+   - **AWS SES** sends an email notifying the user of their new **API key** or **GUI access status**.
 
-## Architecture and Design
+## AWS Services Used
+- **AWS Lambda** → Handles request processing and verification.
+- **Amazon API Gateway** → Facilitates API access for authentication.
+- **Amazon DynamoDB** → Stores user authentication data.
+- **External API** → Used for verifying payload authentication.
+- **AWS SES (Simple Email Service)** → Sends authentication confirmation emails.
 
-![Cloud Index Authorizer](assets/cia-diagram.svg)
+## Setup & Deployment
+### 1. Prerequisites
+- AWS account with necessary IAM permissions.
+- AWS CLI installed and configured.
+- API access to the external database.
 
-### Key AWS Services Used:
+### 2. Clone the Repository
+```sh
+git clone https://github.com/<your-org>/<your-repo>
+cd <your-repo>
+```
 
-- **DynamoDB**:  Stores request and access data
-- **API Gateway**: Manages API requests
-- **Lambda**: Handles automation logic
-- **Secrets Manager**: Secures sensitive information
-- **Simple Email Service**: Email service
+### 3. Deploy AWS Lambda Functions
+#### Install dependencies:
+```sh
+npm install
+```
 
-### Languages:
+#### Deploy using AWS SAM:
+```sh
+sam build && sam deploy --guided
+```
+OR
+#### Deploy using AWS CDK:
+```sh
+cdk deploy
+```
 
-- **Python** 
+### 4. API Invocation
+Manually test the API with:
+```sh
+curl -X POST https://<api-gateway-url>/authenticate \
+     -H "Content-Type: application/json" \
+     -d '{"username": "testuser", "password": "securepassword"}'
+```
 
-## How It Works
+### 5. Check Email Notification
+- If authentication is successful, the user will receive an email from **AWS SES** containing either:
+  - Their **new API key**.
+  - A notification of **GUI access**.
 
-1. Customer submits a **CIA Access Request** via Cloud Index Authorizer's interface.
-1. **Engineering Approval** is required before the request can proceed.
-1. Once approved, clicking `Start` on the CIA's interface, which changes the request status to `PENDING`, triggering the automation pipeline.
-1. The request payload is sent via webhook to the **API Gateway Proxy Endpoint**, triggering the automation **Lambda function**.
-1. The Lambda function processes the request based on type:
-   - **GUI Access:** Requires user **SSO** or **RBAC GROUP**.
-   - **API Access:** Requires a **Special SSO**, verified from Identity Team. If verified, an **API Key** is generated for the customer.
-1.Once all conditions are met, the payload is structured and added to the DynamoDB table to grant user access.
-1. The **Email API** sends an email with the access details and usage instructions.
-1. After verifying access, the request is marked `Completed` in MyHosting.
+## 🚀 Execution Stages
+| Stage | Service | Description |
+|-------|---------|-------------|
+| **Authentication Request** | API Gateway | User submits credentials payload. |
+| **Verification** | Lambda + External API | Payload is compared with database records. |
+| **Access Decision** | Lambda | Determines API key issuance or GUI access. |
+| **Notification** | AWS SES | Sends confirmation email to user. |
 
-
-## Deployment
-
-The **Cloud Index Authorizer** is deployed using **Terraform CLI** for streamlined infrastructure management.
-
-**Automate, simplify, and optimize cloud access management with the Cloud Index Authorizer!**
+## 📖 Resources
+- [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
+- [Amazon API Gateway Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+- [Amazon DynamoDB Documentation](https://docs.aws.amazon.com/dynamodb/latest/developerguide/)
+- [AWS SES Documentation](https://docs.aws.amazon.com/ses/latest/dg/)
