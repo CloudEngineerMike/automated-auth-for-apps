@@ -1,4 +1,4 @@
-# Automated Authentication (AWS)
+# Automated Auth for Apps
 _Automated authentication workflow for verifying user payloads and granting access to GUI or API._
 
 
