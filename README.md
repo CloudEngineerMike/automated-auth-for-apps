@@ -1,4 +1,4 @@
-# Automated Auth for Apps
+# Automated Auth for Web Apps
 _Automated authentication workflow for verifying user payloads and granting access to GUI or API._
 
 
